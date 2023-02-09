@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<h1>Counter</h1>
+<body>
+  <script>
+    var countWorker = null;
+    function startWorker() {
+      if (typeof (Worker) !== "undefined") {
+        if (typeof (countWorker) == "undefined") {
+          countWorker = new Worker("js/workers.js");
+        }
+        countWorker.onmessage = function (event) { console.log(event.data) };
+      } else {
+        console.warn("Sorry, your browser does not support Web Workers...");
+      }
+    }
+  </script>
+</body>
+</html>
